@@ -64,32 +64,32 @@ def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
         presence_penalty=presence_penalty,
         stream=stream
     )
-    complete_response = []
-    for chunk in response:
-        # Ensure that chunk content is not None before appending
-        if chunk.choices[0].delta.content:
-            complete_response.append(chunk.choices[0].delta.content)
-            result_string = ''.join(complete_response)  # Join without additional spaces
+    # complete_response = []
+    # for chunk in response:
+    #     # Ensure that chunk content is not None before appending
+    #     if chunk.choices[0].delta.content:
+    #         complete_response.append(chunk.choices[0].delta.content)
+    #         result_string = ''.join(complete_response)  # Join without additional spaces
  
-            # Auto Scroll
-            lines = result_string.count('\n') + 1
-            avg_chars_per_line = 80  # Adjust based on expected average line length
-            lines += len(result_string) // avg_chars_per_line
-            height_per_line = 20  # Adjust as needed
-            total_height = lines * height_per_line
+    #         # Auto Scroll
+    #         lines = result_string.count('\n') + 1
+    #         avg_chars_per_line = 80  # Adjust based on expected average line length
+    #         lines += len(result_string) // avg_chars_per_line
+    #         height_per_line = 20  # Adjust as needed
+    #         total_height = lines * height_per_line
  
  
-            if text_area_placeholder:
-                if html:
-                    text_area_placeholder.markdown(result_string, unsafe_allow_html=True)
-                else:
-                    text_area_placeholder.text_area("Generated Text", value=result_string,height=total_height)
+    #         if text_area_placeholder:
+    #             if html:
+    #                 text_area_placeholder.markdown(result_string, unsafe_allow_html=True)
+    #             else:
+    #                 text_area_placeholder.text_area("Generated Text", value=result_string,height=total_height)
  
-    result_string = ''.join(complete_response)
-    words = len(result_string.split())  # This is an approximation
-    st.text(f"Total Words Generated: {words}")
+    # result_string = ''.join(complete_response)
+    # words = len(result_string.split())  # This is an approximation
+    # st.text(f"Total Words Generated: {words}")
  
-    return result_string
+    # return result_string
 
 def main():
     apikey = st.secrets["OPENAI_API_KEY"]
