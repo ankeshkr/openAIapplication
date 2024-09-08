@@ -61,8 +61,8 @@ def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
          model = "gpt-3.5-turbo",
          messages=[{"role":"user", "content":prompt}]
          )
-    text_area_placeholder.text_area("Generated Text", value=response)
-    return response
+    text_area_placeholder.text_area("Generated Text", value=response.choices[0].message.content)
+   # return response
     # response = client.chat.completions.create(
     #     model=model,
     #     messages=[{"role": "user", "content": prompt}],
