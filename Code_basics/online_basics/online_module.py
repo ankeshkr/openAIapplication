@@ -55,15 +55,20 @@ def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
                                    max_tokens=30, top_p=1, frequency_penalty=0,
                                    presence_penalty=0, stream=True, html=False):
     response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=temperature,
-        max_tokens=max_tokens,
-        top_p=top_p,
-        frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty,
-        stream=stream
-    )
+         model = "gpt-3.5-turbo",
+         messages=[{"role":"user", "content":prompt}]
+         )
+    return response
+    # response = client.chat.completions.create(
+    #     model=model,
+    #     messages=[{"role": "user", "content": prompt}],
+    #     temperature=temperature,
+    #     max_tokens=max_tokens,
+    #     top_p=top_p,
+    #     frequency_penalty=frequency_penalty,
+    #     presence_penalty=presence_penalty,
+    #     stream=stream
+    # )
     # complete_response = []
     # for chunk in response:
     #     # Ensure that chunk content is not None before appending
