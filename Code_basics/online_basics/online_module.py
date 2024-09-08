@@ -92,7 +92,7 @@ def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
     return result_string
 
 def main():
-    apikey = os.getenv('OPENAI_API_KEY')
+    apikey = st.secrets["OPENAI_API_KEY"]
     client = setup_openai(apikey)
 
     ##### Text generation ####
