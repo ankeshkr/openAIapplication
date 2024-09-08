@@ -50,14 +50,18 @@ def generate_image_openai(client, prompt, model="dall-e-3", size="1024x1024", n=
 # OpenAI Text Generation
 ############################################
  
+#def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
+#                                   model="gpt-3.5-turbo", temperature=0.5,
+#                                   max_tokens=30, top_p=1, frequency_penalty=0,
+#                                   presence_penalty=0, stream=True, html=False):
 def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
-                                   model="gpt-3.5-turbo", temperature=0.5,
-                                   max_tokens=30, top_p=1, frequency_penalty=0,
-                                   presence_penalty=0, stream=True, html=False):
+                                  model="gpt-3.5-turbo",
+                                  max_tokens=30):
     response = client.chat.completions.create(
          model = "gpt-3.5-turbo",
          messages=[{"role":"user", "content":prompt}]
          )
+    text_area_placeholder.text_area("Generated Text", value=response)
     return response
     # response = client.chat.completions.create(
     #     model=model,
