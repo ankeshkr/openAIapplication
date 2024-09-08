@@ -11,7 +11,6 @@ import streamlit as st
 #################################
 
 def setup_openai(apikey):
-    apikey = os.getenv('OPENAI_API_KEY')
     if not apikey:
         raise ValueError("API key not found in environment variables")
     OpenAI.api_key = apikey
@@ -93,6 +92,7 @@ def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
     return result_string
 
 def main():
+    apikey = os.getenv('OPENAI_API_KEY')
     client = setup_openai(apikey)
 
     ##### Text generation ####
@@ -102,9 +102,7 @@ def main():
     if st.button("Generate Text"):
         result = generate_text_openai_streamlit(client, prompt, text_area_placeholder,html=True
                                                 )
-    
- 
- 
+
     #### Image Generation ####
     st.title("Image Generation using OpenAI API")
     prompt = st.text_input("Enter your prompt", placeholder="A cute cat jumping over a fence, cartoon, colorful")
@@ -112,8 +110,6 @@ def main():
         with st.spinner('Generating image...'):
             image = generate_image_openai(client, prompt)
             st.image(image)
- 
- 
  
     ####### AUDIO TRANSCRIPTION #######
     st.title("Audio Transcription using OpenAI API")
@@ -125,10 +121,6 @@ def main():
             with st.spinner('Transcribing audio...'):
                 result = generate_text_from_audio_openai(client, audio_file)
                 st.write(result)
- 
- 
+  
 if __name__ == '__main__':
     main()
-
-
-
