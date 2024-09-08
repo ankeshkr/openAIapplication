@@ -1,5 +1,5 @@
 from openai import OpenAI
-from apikey import apikey
+#from apikey import apikey
 import os
 from PIL import Image
 from io import BytesIO
@@ -11,7 +11,9 @@ import streamlit as st
 #################################
 
 def setup_openai(apikey):
-    os.environ['OPENAI_API_KEY'] = apikey
+    apikey = os.getenv('OPENAI_API_KEY')
+    if not apikey:
+        raise ValueError("API key not found in environment variables")
     OpenAI.api_key = apikey
     client = OpenAI()
     return client
