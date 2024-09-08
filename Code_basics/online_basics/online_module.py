@@ -52,7 +52,7 @@ def generate_image_openai(client, prompt, model="dall-e-3", size="1024x1024", n=
  
 def generate_text_openai_streamlit(client, prompt,text_area_placeholder=None,
                                    model="gpt-3.5-turbo", temperature=0.5,
-                                   max_tokens=3000, top_p=1, frequency_penalty=0,
+                                   max_tokens=30, top_p=1, frequency_penalty=0,
                                    presence_penalty=0, stream=True, html=False):
     response = client.chat.completions.create(
         model=model,
